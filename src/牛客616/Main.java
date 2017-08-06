@@ -1,79 +1,42 @@
 package 牛客616;
 
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.Scanner;
 
 public class Main {
 
+	public static void init(int[] nums, int n) {
+		nums[0] = 1;
+		for (int i = 1; i <= n; i++) {
+			nums[i] = nums[i - 1] << 1 % 1000000007;
+		}
+	}
+
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
+		int[] po = new int[100001];
+		init(po, 100000);
 		while (in.hasNext()) {
 			int n = in.nextInt();
-			int m = in.nextInt();
-			int[][] a = new int[n][2];
-			int[][] k = new int[m][2];
-
+			int k = in.nextInt();
+			int[] nums = new int[n];
 			for (int i = 0; i < n; i++) {
-				a[i] = new int[2];
-				// 生命值
-				a[i][0] = in.nextInt();
-				// 防御力
-				a[i][1] = in.nextInt();
+				nums[i] = in.nextInt();
 			}
-
-			// 先按防御力从小到大排序，再防御生命值比从小到大排序
-			Arrays.sort(a, new Comparator<int[]>() {
-
-				@Override
-				public int compare(int[] o1, int[] o2) {
-					int c = o1[1] - o2[1];
-					if (c == 0) {
-						double r = (double) o1[0] / o1[1] - (double) o2[0] / o2[1];
-						if (r > 0) {
-							return -1;
-						} else {
-							return 1;
-						}
-					}
-					return c;
+			Arrays.sort(nums);
+			int r = 0;
+			int a = 0;
+			int b = n - 1;
+			while (a <= b) {
+				if (nums[a] + nums[b] <= k) {
+					r += po[b - a];
+					a++;
+				} else {
+					b--;
 				}
-
-			});
-
-			for (int i = 0; i < m; i++) {
-				k[i] = new int[n];
-				// 水晶
-				k[i][0] = in.nextInt();
-				// 伤害
-				k[i][1] = in.nextInt();
 			}
-
-			// 先按伤害从小到大排序，再按伤害水晶比从小到大排序
-			Arrays.sort(k, new Comparator<int[]>() {
-
-				@Override
-				public int compare(int[] o1, int[] o2) {
-					int c = o1[1] - o2[1];
-					if (c == 0) {
-						double r = (double) o1[0] / o1[1] - (double) o2[0] / o2[1];
-						if (r > 0) {
-							return -1;
-						} else {
-							return 1;
-						}
-					}
-					return c;
-				}
-
-			});
-			
-			
-			
-			
-
+			System.out.println(r % 1000000007);
 		}
 		in.close();
 	}
-
 }

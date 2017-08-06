@@ -6,7 +6,7 @@ package 牛客616;
  * @author tigerto
  *
  */
-public class Main26 {
+public class Main26___ {
 	public RandomListNode Clone(RandomListNode pHead) {
 		
 		return pHead;
