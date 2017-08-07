@@ -6,7 +6,7 @@ package 牛客616;
  * @author tigerto
  *
  */
-public class Main27__ {
+public class Main27___ {
 
 	private TreeNode curP = null;
 	private TreeNode root = null;
