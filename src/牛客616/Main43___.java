@@ -14,6 +14,12 @@ public class Main43___ {
 		new Main43___().getProb(10);
 	}
 
+	/**
+	 * 非递归
+	 * 
+	 * @param n
+	 * @return
+	 */
 	public ArrayList<Double> getProb(int n) {
 		int[][] p = new int[2][6 * n + 1];
 
@@ -40,4 +46,8 @@ public class Main43___ {
 		return null;
 	}
 
+	public void getP(int n) {
+		int[] p = new int[6 * n + 1];
+		
+	}
 }
