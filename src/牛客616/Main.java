@@ -1,40 +1,31 @@
 package 牛客616;
-import java.util.HashMap;
-import java.util.Scanner;
+
+import java.util.*;
 
 public class Main {
-
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		while (in.hasNext()) {
-			int n = Integer.parseInt(in.nextLine());
-			int res = 0;
-			BTree root = new BTree();
-			while (n != 0) {
-				n--;
-				BTree tmp = root;
-				String[] paths = in.nextLine().split("/");
-				for (int i = 1; i < paths.length - 1; i++) {
-					if (tmp.child.containsKey(paths[i])) {
-						tmp = tmp.child.get(paths[i]);
-					} else {
-						tmp.child.put(paths[i], new BTree());
-						tmp = tmp.child.get(paths[i]);
-						res += 1;
+			int n = in.nextInt();
+			long[] presum = new long[100001];
+			for (int i = 1; i <= n; i++) {
+				presum[i] = presum[i - 1] + in.nextInt();
+			}
+			int k = in.nextInt();
+
+			int max = 0;
+			for (int i = 0; i < n; i++) {
+				for (int j = i + 1; j <= n; j++) {
+					if (max >= n - i) {
+						break;
+					}
+					if (j - i > max && (presum[j] - presum[i]) % k == 0) {
+						max = j - i;
 					}
 				}
 			}
-			System.out.println(res);
+			System.out.println(max);
 		}
 		in.close();
-	}
-
-	static class BTree {
-		HashMap<String, BTree> child;
-		String path;
-
-		BTree() {
-			child = new HashMap<String, BTree>();
-		}
 	}
 }
