@@ -32,7 +32,7 @@ public class xiaomi_2 {
 	}
 
 	static void mergePass(int[] arr, int[] tmp, int l, int r, int mid) {
-		int x = l, y = mid, p = l;
+		int x = l, y = mid, p = l ;
 		while (x < mid || y < r) {
 			if (x == mid || (y < r && arr[x] > arr[y])) {
 				tmp[p++] = arr[y++];

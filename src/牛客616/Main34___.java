@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * @author Chan
  *
  */
-public class Main34 {
+public class Main34___ {
 	public int GetUglyNumber_Solution(int index) {
 		ArrayList<Integer> res = new ArrayList<Integer>();
 		res.add(1);
