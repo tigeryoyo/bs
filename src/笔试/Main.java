@@ -1,34 +1,51 @@
 package 笔试;
 
-import java.util.Scanner;
+import java.util.*;
 
-public class Main {
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        int n = in.nextInt();
-        int m = in.nextInt();
-        int a = in.nextInt();
-        int b = in.nextInt();
-        int c = in.nextInt();
-        int d = in.nextInt();
-        int x = in.nextInt();
-        int y = in.nextInt();
-        int z = in.nextInt();
+public class Main{
 
-        int max = 0;
-        int nowN = n;
-        int nowM = m;
-
-        for(int i=0;i<=n/d;i++) {
-            nowN = n - (d * i);
-            for(int j=0;j<=m/c;j++) {
-                nowM = m - (c * j);
-                int price = (z * i) + (y * j) + (Math.min(nowM/b, nowN/a) * x);
-                if(price > max) {
-                    max = price;
-                }
-            }
-        }
-        System.out.println(max);
-    }
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int[] l = new int[n + 1];
+		int[][] s = new int[11][7];
+		int[][] r = new int[11][7];
+		int[][] m = new int[n + 1][12];
+		
+		for (int i = 0; i < 11; i ++) {
+			Arrays.fill(s[i], 0);
+			Arrays.fill(r[i], 0);
+		}
+		
+		for (int i = 1; i <= n; i ++) {
+			int x = sc.nextInt();
+			int y = x;
+			
+			l[i] = 0;
+			while(x > 0) { l[i] ++; x /= 10; }
+			r[l[i]][y % 7] ++;
+			
+			m[i][0] = y % 7;
+			for (int j = 0; j <= 10; j ++) {
+				s[j][m[i][j]] ++;
+				m[i][j + 1] = m[i][j] * 3 % 7;
+			}
+		}
+		
+		long ans = 0;
+		for (int i = 1; i <= n; i ++) {
+			ans += s[l[i]][(7 - m[i][0]) % 7];
+			if((m[i][l[i]] + m[i][0]) % 7 == 0) ans --;
+			
+			for (int j = 1; j <= 10; j ++) {
+				int need = (7 - m[i][j]) % 7;
+				ans += r[1][need];
+				if(l[i] == j && m[i][0] == need) {
+					ans --;
+				}
+			}
+		}
+		System.out.println(ans);
+		sc.close();
+	}
 }
