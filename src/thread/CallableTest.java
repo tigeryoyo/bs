@@ -24,7 +24,6 @@ public class CallableTest {
 		System.out.println("*****");
 		
 		for(Future<Integer> future: list){
-			System.out.println("..");
 			System.out.println(future.get());
 		}
 		

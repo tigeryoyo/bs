@@ -5,6 +5,9 @@ import java.util.*;
 public class Main{
 
 	public static void main(String[] args) {
+		double a = 100;
+		System.out.println(a/2);
+		
 		Scanner sc = new Scanner(System.in);
 		int n = sc.nextInt();
 		int[] l = new int[n + 1];

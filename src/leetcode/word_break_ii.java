@@ -60,7 +60,7 @@ public class word_break_ii {
 		// 将字符串从分割点i处切割为两部分左边s1和右边s2，
 		// 如果s1包含在字典中，则递归计算s2切割生成的字符串
 		// 用flag[i]==true表示从i位置往后分割不出满足条件的串
-		// flag[i]==true的情况就不需要递归计算了，从而降低运算时间
+		// flag[i]==true的情况就不需要递归计算了，表示i后面不可分，从而降低运算时间
 		boolean[] flag = new boolean[s.length()];
 		help(result, s, dict, "", 0, flag);
 		return result;

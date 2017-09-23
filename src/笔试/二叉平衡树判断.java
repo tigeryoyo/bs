@@ -7,7 +7,7 @@ public class 二叉平衡树判断 {
 		root.lchild = new BinaryTree(1);
 		root.rchild = new BinaryTree(5);
 		root.rchild.rchild = new BinaryTree(5);
-	//	root.rchild.rchild.lchild = new BinaryTree(5);
+		root.rchild.rchild.lchild = new BinaryTree(5);
 		System.out.println(judge(root));
 	}
 
